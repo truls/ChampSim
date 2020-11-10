@@ -247,9 +247,11 @@ with open('Makefile', 'wt') as wfp:
     wfp.write('LDFLAGS := ' + config_file.get('LDFLAGS', '') + '\n')
     wfp.write('LDLIBS := ' + config_file.get('LDLIBS', '') + '\n')
     wfp.write('\n')
-    wfp.write('.phony: all clean\n\n')
+    wfp.write('.phony: all clean format format-check\n\n')
     wfp.write('all: ' + config_file['executable_name'] + '\n\n')
     wfp.write('clean: \n\t find . -name \*.o -delete\n\t find . -name \*.d -delete\n\t $(RM) -r obj\n\n')
+    wfp.write('format: \n\t find . -name \\*.cc -o -name \\*.h | xargs clang-format -i')
+    wfp.write('format-check: \n\t find . -name \\*.cc -o -name \\*.h | xargs clang-format -Werror -n')
     wfp.write(config_file['executable_name'] + ': $(patsubst %.cc,%.o,$(wildcard src/*.cc)) ' + ' '.join('obj/' + k for k in libfilenames) + '\n')
     wfp.write('\t$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)\n\n')
 
