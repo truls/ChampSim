@@ -246,7 +246,7 @@ with open('Makefile', 'wt') as wfp:
     wfp.write('CPPFLAGS := ' + config_file.get('CPPFLAGS', '') + ' -Iinc -MMD -MP\n')
     wfp.write('LDFLAGS := ' + config_file.get('LDFLAGS', '') + '\n')
     wfp.write('LDLIBS := ' + config_file.get('LDLIBS', '') + '\n')
-    wfp.write('CLANG_FORMAT := ' + config_file.get('CLANG_FORMAT', 'clang_format') + '\n')
+    wfp.write('CLANG_FORMAT := ' + config_file.get('CLANG_FORMAT', 'clang-format') + '\n')
     wfp.write('\n')
     wfp.write('.phony: all clean format format-check\n\n')
     wfp.write('all: ' + config_file['executable_name'] + '\n\n')
