@@ -68,7 +68,8 @@ before_script:
 
 
 jobs:
-  - include:
+  include:
+    - name: Check code formatting
       script:
         - make format-check
 
